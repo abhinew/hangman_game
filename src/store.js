@@ -9,7 +9,8 @@ const initialState = {
     currentWord : randomWord(),
     numOfGuesses: null,
     guessedLetter: null,
-    guesses: []
+    guesses: [],
+    wordWithMatchedGuesses: []
 }
 
 const store = createStore(reducer, initialState, enhancer)

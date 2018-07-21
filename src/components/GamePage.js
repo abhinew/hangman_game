@@ -26,18 +26,16 @@ class GamePage extends PureComponent {
 
     onClick = () => {
         this.props.makeGuess(this.state.guessedLetter);
-        console.log(this.props.matchedWord);
+        //console.log(this.props.matchedWord);
         
-    }
-    show = () => {
-        return (this.props.matchedWord);
     }
     
+    
     render () {
-        
+        console.log(this.props);
         return (
             <div>
-                <input type="text" name="selectedWord" placeholder={this.displayRandomWord()} value={this.show()}/>
+                <input type="text" name="selectedWord" placeholder={this.displayRandomWord()} defaultValue={this.props.matchedWord}/>
                 Enter Letter to guess: <input name="letter" type="text" onChange={ this.getLetter.bind(this) }/>
                 <button onClick={this.onClick}>Make a guess</button>
                 <button> New Game</button>
@@ -47,8 +45,9 @@ class GamePage extends PureComponent {
 }
 
 const mapStateToProps =  (state) => {
-    
-    return {
+    console.log(state);
+    // debugger;
+    return {    
       selectedWord: state.currentWord,
       matchedWord: state.wordWithMatchedGuesses
     }
