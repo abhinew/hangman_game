@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { makeGuess } from '../actions/game';
+import { makeGuess, newGame } from '../actions/game';
 
 
 class GamePage extends PureComponent {
-    
+
     state = {
 
     }
+
     displayRandomWord() {
         let arr = []       
         let numOfCharaters = this.props.selectedWord.length;
@@ -18,7 +19,6 @@ class GamePage extends PureComponent {
     }
 
     getLetter(event) {
-        
         this.setState({
             guessedLetter: event.target.value
         })
@@ -26,35 +26,36 @@ class GamePage extends PureComponent {
 
     onClick = () => {
         this.props.makeGuess(this.state.guessedLetter);
-        //console.log(this.props.matchedWord);
         
+        // this.setState({
+        //     guessedLetter: " "
+        // })
     }
     
     
     render () {
-        console.log(this.props);
         return (
             <div>
                 <input type="text" name="selectedWord" placeholder={this.displayRandomWord()} defaultValue={this.props.matchedWord}/>
-                Enter Letter to guess: <input name="letter" type="text" onChange={ this.getLetter.bind(this) }/>
+                Enter Letter to guess: <input name="letter" type="text" onChange={ this.getLetter.bind(this)} value={this.state.guessedLetter}/>
                 <button onClick={this.onClick}>Make a guess</button>
-                <button> New Game</button>
+                <button onClick={this.props.newGame}> New Game</button>
             </div>
         )
     }
 }
 
 const mapStateToProps =  (state) => {
-    console.log(state);
-    // debugger;
     return {    
       selectedWord: state.currentWord,
       matchedWord: state.wordWithMatchedGuesses
     }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    makeGuess: (letter) => dispatch(makeGuess(letter))
+    makeGuess: (letter) => dispatch(makeGuess(letter)),
+    newGame: () => dispatch(newGame())
   }
 }
 
