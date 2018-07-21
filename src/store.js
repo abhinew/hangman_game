@@ -8,7 +8,8 @@ const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 const initialState = {
     currentWord : randomWord(),
     numOfGuesses: null,
-    guessedLetter: null
+    guessedLetter: null,
+    guesses: []
 }
 
 const store = createStore(reducer, initialState, enhancer)
