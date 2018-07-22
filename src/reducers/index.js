@@ -10,11 +10,19 @@ const reducer = (state = [], action = {}) => {
       let guessedLetter = action.payload.guessedLetter;     
       newState.guesses.push(guessedLetter);
       newState.wordWithMatchedGuesses = showGuess(selectedWord,newState.guesses);
-      newState.guessedLetter = action.payload.guessedLetter;
-      console.log(newState.wordWithMatchedGuesses);
       return newState;
     case NEW_GAME:
+
       newState.currentWord = randomWord();
+      const displayRandomWord = () => {
+        let arr = []       
+        let numOfCharaters = newState.currentWord.length;
+        for (let i=0; i<numOfCharaters; i++) {
+            arr.push("_");
+        }
+        return arr.map(element => "_"+" ") 
+    }
+      newState.wordWithMatchedGuesses = displayRandomWord();
       newState.guesses = [];
       return newState;
     default:

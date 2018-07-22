@@ -25,18 +25,19 @@ class GamePage extends PureComponent {
     }
 
     onClick = () => {
+        
         this.props.makeGuess(this.state.guessedLetter);
         
-        // this.setState({
-        //     guessedLetter: " "
-        // })
+        this.setState({
+            guessedLetter: ""
+        })
     }
     
     
     render () {
         return (
             <div>
-                <input type="text" name="selectedWord" placeholder={this.displayRandomWord()} defaultValue={this.props.matchedWord}/>
+                <input type="text" name="selectedWord" placeholder={this.displayRandomWord()} value={this.props.matchedWord}/>
                 Enter Letter to guess: <input name="letter" type="text" onChange={ this.getLetter.bind(this)} value={this.state.guessedLetter}/>
                 <button onClick={this.onClick}>Make a guess</button>
                 <button onClick={this.props.newGame}> New Game</button>
@@ -52,12 +53,6 @@ const mapStateToProps =  (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    makeGuess: (letter) => dispatch(makeGuess(letter)),
-    newGame: () => dispatch(newGame())
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(GamePage)
+export default connect(mapStateToProps, { makeGuess, newGame })(GamePage)
 
