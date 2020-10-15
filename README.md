@@ -3,7 +3,7 @@ This game was created for the Codaisseur academy coding assignment. It is word g
 
 
 ## Technologies
-* React-Redux, HTML, CSS
+React-Redux, HTML, CSS
 
 ## Setup
 Install dependecies
